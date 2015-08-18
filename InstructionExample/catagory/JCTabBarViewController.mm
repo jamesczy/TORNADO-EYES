@@ -8,7 +8,6 @@
 
 #import "JCTabBarViewController.h"
 #import "JCConst.h"
-#import "JCHomeController.h"
 #import "JCOnlineViewController.h"
 #import "JCDownloadViewController.h"
 #import "JCInfoController.h"
@@ -58,7 +57,7 @@
 //    
 
     JCOnlineViewController *onLine =[[JCOnlineViewController alloc]init];
-    [self addChildVc:onLine title:@"视频在线" image:@"tabbar_message_center" selectedImage:@"tabbar_message_center_selected"];
+    [self addChildVc:onLine title:@"本地视频" image:@"tabbar_message_center" selectedImage:@"tabbar_message_center_selected"];
     
     JCDownloadViewController *downLoad = [[JCDownloadViewController alloc]init];
     [self addChildVc:downLoad title:@"下载" image:@"tabbar_discover" selectedImage:@"tabbar_discover_selected"];

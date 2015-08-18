@@ -15,23 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "91E6E7E417CD2D78008B3D2E"
-               BuildableName = "InstructionExample.app"
-               BlueprintName = "InstructionExample"
-               ReferencedContainer = "container:InstructionExample.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "NO"
-            buildForArchiving = "NO"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "91E6E80D17CD2D78008B3D2E"
-               BuildableName = "InstructionExampleTests.octest"
-               BlueprintName = "InstructionExampleTests"
-               ReferencedContainer = "container:InstructionExample.xcodeproj">
+               BuildableName = "TORNADO EYES.app"
+               BlueprintName = "TORNADO EYES"
+               ReferencedContainer = "container:TORNADO EYES.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -42,24 +28,14 @@
       shouldUseLaunchSchemeArgsEnv = "YES"
       buildConfiguration = "Debug">
       <Testables>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "91E6E80D17CD2D78008B3D2E"
-               BuildableName = "InstructionExampleTests.octest"
-               BlueprintName = "InstructionExampleTests"
-               ReferencedContainer = "container:InstructionExample.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "91E6E7E417CD2D78008B3D2E"
-            BuildableName = "InstructionExample.app"
-            BlueprintName = "InstructionExample"
-            ReferencedContainer = "container:InstructionExample.xcodeproj">
+            BuildableName = "TORNADO EYES.app"
+            BlueprintName = "TORNADO EYES"
+            ReferencedContainer = "container:TORNADO EYES.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </TestAction>
@@ -77,9 +53,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "91E6E7E417CD2D78008B3D2E"
-            BuildableName = "InstructionExample.app"
-            BlueprintName = "InstructionExample"
-            ReferencedContainer = "container:InstructionExample.xcodeproj">
+            BuildableName = "TORNADO EYES.app"
+            BlueprintName = "TORNADO EYES"
+            ReferencedContainer = "container:TORNADO EYES.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -96,9 +72,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "91E6E7E417CD2D78008B3D2E"
-            BuildableName = "InstructionExample.app"
-            BlueprintName = "InstructionExample"
-            ReferencedContainer = "container:InstructionExample.xcodeproj">
+            BuildableName = "TORNADO EYES.app"
+            BlueprintName = "TORNADO EYES"
+            ReferencedContainer = "container:TORNADO EYES.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

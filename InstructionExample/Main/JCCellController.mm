@@ -10,6 +10,7 @@
 #import "JCCollectionCell.h"
 #import "ViewController.h"
 #import "JC360Controller.h"
+#import "JCNavigationController.h"
 
 @interface JCCellController ()
 
@@ -46,25 +47,44 @@ static NSString * const reuseIdentifier = @"Cell";
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
+//读取本地文件
+- (IBAction)logFilePathInDocumentsDir:(id)sender
+{
+    NSString *docsDir = [NSHomeDirectory() stringByAppendingPathComponent:  @"Documents"];
+    
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    
+    NSDirectoryEnumerator *dirEnum = [fileManager enumeratorAtPath:docsDir];
+    
+    NSString *fileName;
+    
+    while (fileName = [dirEnum nextObject]) {
+        NSLog(@"FielName : %@" , fileName);
+        NSLog(@"FileFullPath : %@" , [docsDir stringByAppendingPathComponent:fileName]) ;
+    }
+    
+}
 
 #pragma mark <UICollectionViewDataSource>
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
-#warning Incomplete method implementation -- Return the number of sections
+
     return 1;
 }
 
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-#warning Incomplete method implementation -- Return the number of items in the section
-    return 35;
+
+    return 2;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     JCCollectionCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
     
-
+    if (cell == nil) {
+        cell = [[JCCollectionCell alloc]init];
+    }
+    [cell setCellTitle:@"标题" Name:@"介绍"];
     return cell;
 }
 
@@ -85,7 +105,8 @@ static NSString * const reuseIdentifier = @"Cell";
     NSLog(@"这是第 %d 行被点击了。",indexPath.row);
     JC360Controller *vc = [[JC360Controller alloc]init];
 //    ViewController *vc = [[ViewController alloc]init];
-    [self presentViewController:vc animated:YES completion:nil];
+    JCNavigationController *nav = [[JCNavigationController alloc]initWithRootViewController:vc];
+    [self presentViewController:nav animated:YES completion:nil];
 //    [self.navigationController pushViewController:vc animated:TRUE];
 }
 

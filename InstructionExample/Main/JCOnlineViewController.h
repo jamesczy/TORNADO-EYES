@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface JCOnlineViewController : UITableViewController
+@interface JCOnlineViewController : UICollectionViewController
 
 @end

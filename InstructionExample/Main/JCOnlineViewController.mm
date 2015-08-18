@@ -10,104 +10,163 @@
 #import "UIView+Extension.h"
 #import "UIBarButtonItem+Extension.h"
 #import "ViewController.h"
+#import "JCCollectionCell.h"
+#import "JC360Controller.h"
+#import "JCNavigationController.h"
+#import "JCLocalVideoController.h"
 
 @interface JCOnlineViewController ()
+@property (nonatomic ,strong)NSMutableArray *titleArray;
+@property (nonatomic ,strong)NSMutableArray *titlePathArray;
+
 
 @end
 
+static NSString * const reuseIdentifier = @"Cell";
+
 @implementation JCOnlineViewController
 
+//-(NSMutableArray *)titleArray
+//{
+//    if (_titleArray == nil) {
+//        NSMutableArray *array = [[NSMutableArray alloc]init ];
+//        self.titleArray = array;
+//    }
+//    return _titleArray;
+//}
+-(instancetype)init
+{
+    UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc]init];
+    layout.itemSize = CGSizeMake(150, 200);
+    
+    //    layout.minimumInteritemSpacing = 5;
+    layout.minimumLineSpacing = 5;
+    //设置itme的左右两边间距
+    layout.sectionInset = UIEdgeInsetsMake(0, 5, 0, 5);
+    return [super initWithCollectionViewLayout:layout];
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
-    UIButton *OnlineTitleButton = [[UIButton alloc]init];
-    OnlineTitleButton.width = 150;
-    OnlineTitleButton.height = 30;
     
-    [OnlineTitleButton setTitle:@"视频在线" forState:UIControlStateNormal];
-    [OnlineTitleButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    OnlineTitleButton.titleLabel.font = [UIFont systemFontOfSize:17];
+    // self.clearsSelectionOnViewWillAppear = NO;
+    self.collectionView.backgroundColor = [UIColor whiteColor];
+    // Register cell classes
+    [self.collectionView registerClass:[JCCollectionCell class] forCellWithReuseIdentifier:reuseIdentifier];
     
-    self.navigationItem.titleView = OnlineTitleButton;
+//    
+//    UIButton *OnlineTitleButton = [[UIButton alloc]init];
+//    OnlineTitleButton.width = 150;
+//    OnlineTitleButton.height = 30;
+//    
+//    [OnlineTitleButton setTitle:@"本地视频" forState:UIControlStateNormal];
+//    [OnlineTitleButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+//    OnlineTitleButton.titleLabel.font = [UIFont systemFontOfSize:17];
+//    
+//    self.navigationItem.titleView = OnlineTitleButton;
+    
     
 }
+-(void)viewWillAppear:(BOOL)animated
+{
+    NSString *docsDir = [NSHomeDirectory() stringByAppendingPathComponent:  @"Documents"];
+//    [self logFilePathInDocumentsDir];
+ 
+    self.titlePathArray = [self getFilenamelistOfType:@"mp4" fromDirPath:docsDir];
+}
 
+-(NSArray *)getFilenamelistOfType:(NSString *)type fromDirPath:(NSString *)dirPath
+{
+    NSString *docsDir = [NSHomeDirectory() stringByAppendingPathComponent:  @"Documents"];
+    
+    NSMutableArray *filenamelist = [NSMutableArray arrayWithCapacity:10];
+    NSMutableArray *filenamePathlist = [NSMutableArray arrayWithCapacity:10];
+    NSArray *tmplist = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:dirPath error:nil];
+    
+    for (NSString *filename in tmplist) {
+        NSString *fullpath = [dirPath stringByAppendingPathComponent:filename];
+        if ([self isFileExistAtPath:fullpath]) {
+            if ([[filename pathExtension] isEqualToString:type]) {
+                [filenamelist  addObject:filename];
+                [filenamePathlist  addObject:[docsDir stringByAppendingPathComponent:filename]];
+            }
+        }
+    }
+    
+    self.titleArray = filenamelist;
+//    NSLog(@"filenamelist -->%@",filenamelist);
+    
+    return filenamePathlist;
+}
+-(BOOL)isFileExistAtPath:(NSString*)fileFullPath {
+    BOOL isExist = NO;
+    isExist = [[NSFileManager defaultManager] fileExistsAtPath:fileFullPath];
+    return isExist;
+}
+/**
+//读取本地文件
+- (void)logFilePathInDocumentsDir
+{
+    NSString *docsDir = [NSHomeDirectory() stringByAppendingPathComponent:  @"Documents"];
+    NSLog(@"docsDir ---> %@",docsDir);
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    //枚举出目录的内容
+    NSDirectoryEnumerator *dirEnum = [fileManager enumeratorAtPath:docsDir];
+    
+    NSArray *array = [fileManager contentsOfDirectoryAtPath:docsDir error:nil];
+    NSString *fileName;
+    NSString *fileNamePath;
+    int i = 0;
+    
+    while (fileName = [dirEnum nextObject]) {
+        i++;
+        
+        NSLog(@"FielName : %@" , fileName);
+        NSLog(@"FileFullPath : %@" , [docsDir stringByAppendingPathComponent:fileName]) ;
+        fileNamePath = [docsDir stringByAppendingPathComponent:fileName];
+    }
+    
+    self.titleArray = array;
+    NSLog(@"%d",self.titleArray.count);
+}
+ */
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
-#pragma mark - Table view data source
+#pragma mark <UICollectionViewDataSource>
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-#warning Potentially incomplete method implementation.
-    // Return the number of sections.
+- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
+
     return 1;
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-#warning Incomplete method implementation.
-    // Return the number of rows in the section.
-    return 20;
+
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
+    
+    return self.titleArray.count;
 }
 
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    static NSString *ID = @"cell";
-    
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:ID ];
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+    JCCollectionCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
     
     if (cell == nil) {
-        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ID];
+        cell = [[JCCollectionCell alloc]init];
     }
-    
-    cell.textLabel.text = [NSString stringWithFormat:@"在线视频－－－》%d",indexPath.row];
+    [cell setCellTitle:self.titleArray[indexPath.row] Name:self.titleArray[indexPath.row]];
     return cell;
 }
 
-
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
+-(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSLog(@"这是第 %d 行被点击了。",indexPath.row);
+    JCLocalVideoController *vc = [[JCLocalVideoController alloc]init];
+    vc.videoURL = self.titlePathArray[indexPath.row];
+    
+    JCNavigationController *nav = [[JCNavigationController alloc]initWithRootViewController:vc];
+    [self presentViewController:nav animated:YES completion:nil];
+    //    [self.navigationController pushViewController:vc animated:TRUE];
 }
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

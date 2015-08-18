@@ -34,7 +34,6 @@
 		91E6E83E17CD45EE008B3D2E /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91E6E83317CD45EE008B3D2E /* QuartzCore.framework */; };
 		91E6E83F17CD45EE008B3D2E /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91E6E83417CD45EE008B3D2E /* Security.framework */; };
 		91E6E84217CD6B15008B3D2E /* TouchFilterUIView.mm in Sources */ = {isa = PBXBuildFile; fileRef = 91E6E84117CD6B14008B3D2E /* TouchFilterUIView.mm */; };
-		982DC71A1B65CD4B002F3DAE /* JCHomeController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 982DC7191B65CD4B002F3DAE /* JCHomeController.mm */; };
 		982DC71D1B65CD82002F3DAE /* JCOnlineViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 982DC71C1B65CD82002F3DAE /* JCOnlineViewController.mm */; };
 		982DC7201B65CD9E002F3DAE /* JCDownloadViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 982DC71F1B65CD9E002F3DAE /* JCDownloadViewController.mm */; };
 		982DC7231B65D555002F3DAE /* JCInfoController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 982DC7221B65D555002F3DAE /* JCInfoController.mm */; };
@@ -99,7 +98,6 @@
 		987FBF691B67682700A1D80D /* JC360Controller.mm in Sources */ = {isa = PBXBuildFile; fileRef = 987FBF681B67682700A1D80D /* JC360Controller.mm */; };
 		9880198E1B6B297800346D91 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 9880198C1B6B297800346D91 /* icon.png */; };
 		9880198F1B6B297800346D91 /* icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9880198D1B6B297800346D91 /* icon@2x.png */; };
-		BF67A8371B7AEA55004129DA /* testView.mm in Sources */ = {isa = PBXBuildFile; fileRef = BF67A8361B7AEA55004129DA /* testView.mm */; };
 		BF93A6711B79C5A0009B067A /* movieBackward.png in Resources */ = {isa = PBXBuildFile; fileRef = BF93A6611B79C5A0009B067A /* movieBackward.png */; };
 		BF93A6721B79C5A0009B067A /* movieBackward@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BF93A6621B79C5A0009B067A /* movieBackward@2x.png */; };
 		BF93A6731B79C5A0009B067A /* movieBackwardSelected.png in Resources */ = {isa = PBXBuildFile; fileRef = BF93A6631B79C5A0009B067A /* movieBackwardSelected.png */; };
@@ -117,16 +115,20 @@
 		BF93A67F1B79C5A0009B067A /* moviePlay.png in Resources */ = {isa = PBXBuildFile; fileRef = BF93A66F1B79C5A0009B067A /* moviePlay.png */; };
 		BF93A6801B79C5A0009B067A /* moviePlay@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BF93A6701B79C5A0009B067A /* moviePlay@2x.png */; };
 		BF93A6831B79C5E2009B067A /* JCPlayPauseView.mm in Sources */ = {isa = PBXBuildFile; fileRef = BF93A6821B79C5E2009B067A /* JCPlayPauseView.mm */; };
+		BFB4AEAA1B81966100ECECB2 /* 图标.png in Resources */ = {isa = PBXBuildFile; fileRef = BFB4AEA91B81966100ECECB2 /* 图标.png */; };
+		BFB4AEAD1B82C71600ECECB2 /* JCLocalVideoController.mm in Sources */ = {isa = PBXBuildFile; fileRef = BFB4AEAC1B82C71600ECECB2 /* JCLocalVideoController.mm */; };
+		BFB4AEB11B83055600ECECB2 /* compose_toolbar_background@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BFB4AEAF1B83055600ECECB2 /* compose_toolbar_background@2x.png */; };
+		BFB4AEB21B83055600ECECB2 /* Contents.json in Resources */ = {isa = PBXBuildFile; fileRef = BFB4AEB01B83055600ECECB2 /* Contents.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		91D3555E17FFA606002D801B /* Aquarium.Of.The.Bay_10973_1280x506_f12_2M_a0.webm */ = {isa = PBXFileReference; lastKnownFileType = file; path = Aquarium.Of.The.Bay_10973_1280x506_f12_2M_a0.webm; sourceTree = "<group>"; };
 		91D3555F17FFA606002D801B /* Aquarium.Of.The.Bay.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Aquarium.Of.The.Bay.mp3; sourceTree = "<group>"; };
-		91E6E7E517CD2D78008B3D2E /* InstructionExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InstructionExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		91E6E7E517CD2D78008B3D2E /* TORNADO EYES.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "TORNADO EYES.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		91E6E7E817CD2D78008B3D2E /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		91E6E7EA17CD2D78008B3D2E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		91E6E7EC17CD2D78008B3D2E /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		91E6E7F017CD2D78008B3D2E /* InstructionExample-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "InstructionExample-Info.plist"; sourceTree = "<group>"; };
+		91E6E7F017CD2D78008B3D2E /* TORNADO EYES-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "TORNADO EYES-Info.plist"; sourceTree = "<group>"; };
 		91E6E7F217CD2D78008B3D2E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		91E6E7F417CD2D78008B3D2E /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		91E6E7F617CD2D78008B3D2E /* OrientationAndMediaEvents-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "OrientationAndMediaEvents-Prefix.pch"; sourceTree = "<group>"; };
@@ -158,8 +160,6 @@
 		91E6E83417CD45EE008B3D2E /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		91E6E84017CD6B14008B3D2E /* TouchFilterUIView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TouchFilterUIView.h; sourceTree = "<group>"; };
 		91E6E84117CD6B14008B3D2E /* TouchFilterUIView.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = TouchFilterUIView.mm; sourceTree = "<group>"; };
-		982DC7181B65CD4B002F3DAE /* JCHomeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JCHomeController.h; sourceTree = "<group>"; };
-		982DC7191B65CD4B002F3DAE /* JCHomeController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = JCHomeController.mm; sourceTree = "<group>"; };
 		982DC71B1B65CD82002F3DAE /* JCOnlineViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JCOnlineViewController.h; sourceTree = "<group>"; };
 		982DC71C1B65CD82002F3DAE /* JCOnlineViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = JCOnlineViewController.mm; sourceTree = "<group>"; };
 		982DC71E1B65CD9E002F3DAE /* JCDownloadViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JCDownloadViewController.h; sourceTree = "<group>"; };
@@ -236,8 +236,6 @@
 		987FBF681B67682700A1D80D /* JC360Controller.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = JC360Controller.mm; sourceTree = "<group>"; };
 		9880198C1B6B297800346D91 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
 		9880198D1B6B297800346D91 /* icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon@2x.png"; sourceTree = "<group>"; };
-		BF67A8351B7AEA55004129DA /* testView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = testView.h; sourceTree = "<group>"; };
-		BF67A8361B7AEA55004129DA /* testView.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = testView.mm; sourceTree = "<group>"; };
 		BF93A6611B79C5A0009B067A /* movieBackward.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = movieBackward.png; sourceTree = "<group>"; };
 		BF93A6621B79C5A0009B067A /* movieBackward@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "movieBackward@2x.png"; sourceTree = "<group>"; };
 		BF93A6631B79C5A0009B067A /* movieBackwardSelected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = movieBackwardSelected.png; sourceTree = "<group>"; };
@@ -256,6 +254,11 @@
 		BF93A6701B79C5A0009B067A /* moviePlay@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "moviePlay@2x.png"; sourceTree = "<group>"; };
 		BF93A6811B79C5E2009B067A /* JCPlayPauseView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JCPlayPauseView.h; sourceTree = "<group>"; };
 		BF93A6821B79C5E2009B067A /* JCPlayPauseView.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = JCPlayPauseView.mm; sourceTree = "<group>"; };
+		BFB4AEA91B81966100ECECB2 /* 图标.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "图标.png"; path = "player/图标.png"; sourceTree = "<group>"; };
+		BFB4AEAB1B82C71600ECECB2 /* JCLocalVideoController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JCLocalVideoController.h; sourceTree = "<group>"; };
+		BFB4AEAC1B82C71600ECECB2 /* JCLocalVideoController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = JCLocalVideoController.mm; sourceTree = "<group>"; };
+		BFB4AEAF1B83055600ECECB2 /* compose_toolbar_background@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "compose_toolbar_background@2x.png"; sourceTree = "<group>"; };
+		BFB4AEB01B83055600ECECB2 /* Contents.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Contents.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -302,7 +305,7 @@
 		91E6E7E617CD2D78008B3D2E /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				91E6E7E517CD2D78008B3D2E /* InstructionExample.app */,
+				91E6E7E517CD2D78008B3D2E /* TORNADO EYES.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -358,7 +361,7 @@
 		91E6E7EF17CD2D78008B3D2E /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				91E6E7F017CD2D78008B3D2E /* InstructionExample-Info.plist */,
+				91E6E7F017CD2D78008B3D2E /* TORNADO EYES-Info.plist */,
 				91E6E7F117CD2D78008B3D2E /* InfoPlist.strings */,
 				91E6E7F417CD2D78008B3D2E /* main.m */,
 				91E6E7F617CD2D78008B3D2E /* OrientationAndMediaEvents-Prefix.pch */,
@@ -391,8 +394,6 @@
 		982DC7171B65CD4B002F3DAE /* Main */ = {
 			isa = PBXGroup;
 			children = (
-				982DC7181B65CD4B002F3DAE /* JCHomeController.h */,
-				982DC7191B65CD4B002F3DAE /* JCHomeController.mm */,
 				982DC71B1B65CD82002F3DAE /* JCOnlineViewController.h */,
 				982DC71C1B65CD82002F3DAE /* JCOnlineViewController.mm */,
 				982DC71E1B65CD9E002F3DAE /* JCDownloadViewController.h */,
@@ -403,6 +404,8 @@
 				987FBF081B661A8600A1D80D /* JCCellController.mm */,
 				987FBF671B67682700A1D80D /* JC360Controller.h */,
 				987FBF681B67682700A1D80D /* JC360Controller.mm */,
+				BFB4AEAB1B82C71600ECECB2 /* JCLocalVideoController.h */,
+				BFB4AEAC1B82C71600ECECB2 /* JCLocalVideoController.mm */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -437,6 +440,7 @@
 			children = (
 				BF93A6601B79C5A0009B067A /* player */,
 				9880198C1B6B297800346D91 /* icon.png */,
+				BFB4AEA91B81966100ECECB2 /* 图标.png */,
 				9880198D1B6B297800346D91 /* icon@2x.png */,
 				9874127F1B61E83100DB0271 /* TabBar */,
 				9874124C1B61E7C800DB0271 /* NavigationBar */,
@@ -554,6 +558,7 @@
 		9874127F1B61E83100DB0271 /* TabBar */ = {
 			isa = PBXGroup;
 			children = (
+				BFB4AEAE1B83055600ECECB2 /* compose_toolbar_background.imageset */,
 				987412801B61E83100DB0271 /* main_badge.imageset */,
 				987412831B61E83100DB0271 /* tabbar_background.imageset */,
 				987412861B61E83100DB0271 /* tabbar_compose_button.imageset */,
@@ -703,8 +708,6 @@
 			children = (
 				BF93A6811B79C5E2009B067A /* JCPlayPauseView.h */,
 				BF93A6821B79C5E2009B067A /* JCPlayPauseView.mm */,
-				BF67A8351B7AEA55004129DA /* testView.h */,
-				BF67A8361B7AEA55004129DA /* testView.mm */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -732,12 +735,21 @@
 			path = player;
 			sourceTree = "<group>";
 		};
+		BFB4AEAE1B83055600ECECB2 /* compose_toolbar_background.imageset */ = {
+			isa = PBXGroup;
+			children = (
+				BFB4AEAF1B83055600ECECB2 /* compose_toolbar_background@2x.png */,
+				BFB4AEB01B83055600ECECB2 /* Contents.json */,
+			);
+			path = compose_toolbar_background.imageset;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		91E6E7E417CD2D78008B3D2E /* InstructionExample */ = {
+		91E6E7E417CD2D78008B3D2E /* TORNADO EYES */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 91E6E82017CD2D78008B3D2E /* Build configuration list for PBXNativeTarget "InstructionExample" */;
+			buildConfigurationList = 91E6E82017CD2D78008B3D2E /* Build configuration list for PBXNativeTarget "TORNADO EYES" */;
 			buildPhases = (
 				91E6E7E117CD2D78008B3D2E /* Sources */,
 				91E6E7E217CD2D78008B3D2E /* Frameworks */,
@@ -747,9 +759,9 @@
 			);
 			dependencies = (
 			);
-			name = InstructionExample;
+			name = "TORNADO EYES";
 			productName = InstructionExample;
-			productReference = 91E6E7E517CD2D78008B3D2E /* InstructionExample.app */;
+			productReference = 91E6E7E517CD2D78008B3D2E /* TORNADO EYES.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -767,7 +779,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 91E6E7E017CD2D78008B3D2E /* Build configuration list for PBXProject "InstructionExample" */;
+			buildConfigurationList = 91E6E7E017CD2D78008B3D2E /* Build configuration list for PBXProject "TORNADO EYES" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -779,7 +791,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				91E6E7E417CD2D78008B3D2E /* InstructionExample */,
+				91E6E7E417CD2D78008B3D2E /* TORNADO EYES */,
 			);
 		};
 /* End PBXProject section */
@@ -796,6 +808,7 @@
 				987412761B61E7C800DB0271 /* navigationbar_friendsearch_highlighted@2x.png in Resources */,
 				BF93A6781B79C5A0009B067A /* movieForward@2x.png in Resources */,
 				987412B91B61E83100DB0271 /* tabbar_discover_selected@2x.png in Resources */,
+				BFB4AEB11B83055600ECECB2 /* compose_toolbar_background@2x.png in Resources */,
 				BF93A6801B79C5A0009B067A /* moviePlay@2x.png in Resources */,
 				987412BD1B61E83100DB0271 /* tabbar_home_selected@2x.png in Resources */,
 				987412B21B61E83100DB0271 /* Contents.json in Resources */,
@@ -832,10 +845,12 @@
 				BF93A67E1B79C5A0009B067A /* moviePause@2x.png in Resources */,
 				BF93A67C1B79C5A0009B067A /* movieFullscreen@2x.png in Resources */,
 				BF93A67B1B79C5A0009B067A /* movieFullscreen.png in Resources */,
+				BFB4AEB21B83055600ECECB2 /* Contents.json in Resources */,
 				987412711B61E7C800DB0271 /* Contents.json in Resources */,
 				987412BB1B61E83100DB0271 /* tabbar_home@2x.png in Resources */,
 				9874127C1B61E7C800DB0271 /* navigationbar_pop@2x.png in Resources */,
 				BF93A6751B79C5A0009B067A /* movieEndFullscreen.png in Resources */,
+				BFB4AEAA1B81966100ECECB2 /* 图标.png in Resources */,
 				987412BE1B61E83100DB0271 /* Contents.json in Resources */,
 				987412B41B61E83100DB0271 /* Contents.json in Resources */,
 				91D3556017FFA606002D801B /* Aquarium.Of.The.Bay_10973_1280x506_f12_2M_a0.webm in Resources */,
@@ -875,7 +890,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BF67A8371B7AEA55004129DA /* testView.mm in Sources */,
 				982DC71D1B65CD82002F3DAE /* JCOnlineViewController.mm in Sources */,
 				9874123C1B61DA4900DB0271 /* UIView+Extension.mm in Sources */,
 				91E6E7F517CD2D78008B3D2E /* main.m in Sources */,
@@ -883,10 +897,10 @@
 				987412461B61E5AB00DB0271 /* JCTabBarViewController.mm in Sources */,
 				91E6E7F917CD2D78008B3D2E /* AppDelegate.mm in Sources */,
 				987FBF691B67682700A1D80D /* JC360Controller.mm in Sources */,
-				982DC71A1B65CD4B002F3DAE /* JCHomeController.mm in Sources */,
 				BF93A6831B79C5E2009B067A /* JCPlayPauseView.mm in Sources */,
 				982DC7231B65D555002F3DAE /* JCInfoController.mm in Sources */,
 				987412451B61E5AB00DB0271 /* JCNavigationController.mm in Sources */,
+				BFB4AEAD1B82C71600ECECB2 /* JCLocalVideoController.mm in Sources */,
 				9874124A1B61E71300DB0271 /* UIBarButtonItem+Extension.mm in Sources */,
 				987FBF091B661A8600A1D80D /* JCCellController.mm in Sources */,
 				91E6E80817CD2D78008B3D2E /* ViewController.mm in Sources */,
@@ -1039,8 +1053,9 @@
 					"values>",
 					"\"$(SRCROOT)/im360.framework/Headers\"",
 				);
-				INFOPLIST_FILE = "InstructionExample/InstructionExample-Info.plist";
-				PRODUCT_NAME = InstructionExample;
+				INFOPLIST_FILE = "InstructionExample/TORNADO EYES-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
+				PRODUCT_NAME = "TORNADO EYES";
 				PROVISIONING_PROFILE = "";
 				VALID_ARCHS = armv7;
 				WRAPPER_EXTENSION = app;
@@ -1085,8 +1100,9 @@
 					"values>",
 					"\"$(SRCROOT)/im360.framework/Headers\"",
 				);
-				INFOPLIST_FILE = "InstructionExample/InstructionExample-Info.plist";
-				PRODUCT_NAME = InstructionExample;
+				INFOPLIST_FILE = "InstructionExample/TORNADO EYES-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
+				PRODUCT_NAME = "TORNADO EYES";
 				PROVISIONING_PROFILE = "";
 				VALID_ARCHS = armv7;
 				WRAPPER_EXTENSION = app;
@@ -1096,7 +1112,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		91E6E7E017CD2D78008B3D2E /* Build configuration list for PBXProject "InstructionExample" */ = {
+		91E6E7E017CD2D78008B3D2E /* Build configuration list for PBXProject "TORNADO EYES" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				91E6E81E17CD2D78008B3D2E /* Debug */,
@@ -1105,7 +1121,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		91E6E82017CD2D78008B3D2E /* Build configuration list for PBXNativeTarget "InstructionExample" */ = {
+		91E6E82017CD2D78008B3D2E /* Build configuration list for PBXNativeTarget "TORNADO EYES" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				91E6E82117CD2D78008B3D2E /* Debug */,

@@ -12,4 +12,7 @@
 @property (nonatomic, strong) UIImageView *imageView;
 @property (nonatomic, strong) UILabel *nameLable;
 @property (nonatomic, strong) UIButton *button;
+
+-(void)setCellTitle:(NSString *)title Name:(NSString *)name;
+
 @end

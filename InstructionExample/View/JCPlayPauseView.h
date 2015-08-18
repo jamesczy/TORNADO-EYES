@@ -7,7 +7,18 @@
 //
 
 #import <UIKit/UIKit.h>
+typedef enum {
+    JCPlayPauseViewButtonTypePlayPause, //播放
+    JCPlayPauseViewButtonTypeBackward,  //回退
+    JCPlayPauseViewButtonTypeForward    //快进
+}JCPlayPauseViewButtonType;
 
+@class JCPlayPauseView;
+@protocol JCPlayPauseViewDelegate <NSObject>
+@optional
+-(void)JCPlayPauseView:(JCPlayPauseView *)toolbar didClickButton:(JCPlayPauseViewButtonType)buttonType;
+@end
 @interface JCPlayPauseView : UIView
 
+@property (nonatomic ,weak)id <JCPlayPauseViewDelegate> delegate;
 @end

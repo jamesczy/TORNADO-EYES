@@ -13,27 +13,32 @@
 {
     self = [super initWithFrame:frame];
     if (self != nil) {
-        self.imageView = [[UIImageView alloc]init];
-        self.imageView.backgroundColor = [UIColor grayColor];
-        [self addSubview:self.imageView];
-        
-        self.nameLable = [[UILabel alloc]init];
-        self.nameLable.text = @"标题";
-        self.nameLable.backgroundColor = [UIColor yellowColor];
-        self.nameLable.textAlignment = NSTextAlignmentCenter;
-        [self addSubview:self.nameLable];
-        
-        self.button = [[UIButton alloc]init];
-        [self.button setTitle:@"介绍" forState:UIControlStateNormal];
-        [self.button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-        self.button.titleLabel.textAlignment = NSTextAlignmentCenter;
-        [self addSubview:self.button];
+
         
     }
     
     return self;
 }
 
+
+-(void)setCellTitle:(NSString *)title Name:(NSString *)name
+{
+    self.imageView = [[UIImageView alloc]init];
+    self.imageView.backgroundColor = [UIColor grayColor];
+    [self addSubview:self.imageView];
+    
+    self.nameLable = [[UILabel alloc]init];
+    self.nameLable.text = title;
+    self.nameLable.backgroundColor = [UIColor whiteColor];
+    self.nameLable.textAlignment = NSTextAlignmentCenter;
+    [self addSubview:self.nameLable];
+    
+    self.button = [[UIButton alloc]init];
+    [self.button setTitle:name forState:UIControlStateNormal];
+    [self.button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    self.button.titleLabel.textAlignment = NSTextAlignmentCenter;
+    [self addSubview:self.button];
+}
 -(void)layoutSubviews
 {
     [super layoutSubviews];

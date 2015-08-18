@@ -1,24 +1,22 @@
 //
-//  JC360Controller.m
-//  InstructionExample
+//  JCLocalVideoController.m
+//  TORNADO EYES
 //
-//  Created by jamesczy on 15/7/28.
+//  Created by yingyi on 15/8/18.
 //  Copyright (c) 2015年 im360 immersive. All rights reserved.
 //
 
-#import "JC360Controller.h"
+#import "JCLocalVideoController.h"
 #import "UIView+Extension.h"
 #import "JCPlayPauseView.h"
-#import "JCPlayPauseView.h"
-//
-//static BOOL isPortraitIn_;
-//static BOOL isSettingStatusBar_;
-@interface JC360Controller ()
-- (void)playerInitialized:(id)sender;
+
+@interface JCLocalVideoController () <JCPlayPauseViewDelegate>
 @property (nonatomic ,weak)JCPlayPauseView *toolbar;
+- (void)playerInitialized:(id)sender;
 @end
 
-@implementation JC360Controller
+@implementation JCLocalVideoController
+
 class PlayerProxy : public im360::event::EventListener   //EventListener
 {
 public:
@@ -40,22 +38,22 @@ public:
         else if( event->getPointer<im360::event::TimeChangeEvent>() ) [owner onMediaTimeChange:event->getPointer<im360::event::TimeChangeEvent>()];
     }
     
-    JC360Controller * owner;
+    JCLocalVideoController* owner;
 };
-
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     [self setnavUp];
-
+    
+    
+    
 }
-
 -(void)setnavUp
 {
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"返回" style:UIBarButtonItemStyleDone target:self action:@selector(cancel)];
-    self.navigationItem.title = @"我的视频";
+    self.navigationItem.title = @"本地视频";
 }
+
 -(void)setupToolbar
 {
     NSLog(@"setupToolbar");
@@ -74,13 +72,12 @@ public:
 }
 -(void)viewDidAppear:(BOOL)animated
 {
-    NSLog(@"viewDidAppear");
     CGRect rect = self.view.frame;
     if( self.interfaceOrientation == UIInterfaceOrientationLandscapeLeft || self.interfaceOrientation == UIInterfaceOrientationLandscapeRight )
     {
         
         _im360View = [[IM360View alloc] initWithFrame:rect];
-//        NSLog(@"%lf ___%lf",rect.size.width,rect.size.height);
+        //        NSLog(@"%lf ___%lf",rect.size.width,rect.size.height);
     }
     _im360View.im360ViewDelegate = self;
     
@@ -97,22 +94,22 @@ public:
     scene::BasicScene::pointer scene = _player->getScene<scene::BasicScene>();
     if( !scene )
     {
-//        _rewindBtn.enabled = NO;
-//        _playBtn.enabled = NO;
+        //        _rewindBtn.enabled = NO;
+        //        _playBtn.enabled = NO;
         return;
     }
-//    _rewindBtn.enabled = scene->getTime()>0;
+    //    _rewindBtn.enabled = scene->getTime()>0;
     if( scene->getPaused() /*&& _playbar.items!=_playbarItemsPlay */)
     {
-//        NSLog(@"setItems play,%d",scene->getPaused());
+        //        NSLog(@"setItems play,%d",scene->getPaused());
         scene->setPaused(NO);
-//        [_playbar setItems:_playbarItemsPlay animated:NO];
+        //        [_playbar setItems:_playbarItemsPlay animated:NO];
     }
     else if( !scene->getPaused() /* && _playbar.items!=_playbarItemsPause */)
     {
-//        NSLog(@"setItems pause");
+        //        NSLog(@"setItems pause");
         scene->setPaused(YES);
-//        [_playbar setItems:_playbarItemsPause animated:NO];
+        //        [_playbar setItems:_playbarItemsPause animated:NO];
     }
     
 }
@@ -141,16 +138,16 @@ public:
 }
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
-//    NSLog(@"触摸界面");
     //控制导航栏的显示和隐藏
-    if ([self navigationController].navigationBarHidden) {
+    if ([self navigationController].navigationBarHidden) {//显示
         [[self navigationController]setNavigationBarHidden:NO animated:YES];
-        self.toolbar.hidden =NO;
+        self.toolbar.hidden = NO;
 //        [self setPlaybarBtnStates];
-    }else{
+    }else{//隐藏
         [[self navigationController]setNavigationBarHidden:YES animated:YES];
         self.toolbar.hidden = YES;
     }
+    
 }
 
 
@@ -160,24 +157,27 @@ public:
     _player = _im360View.player;
     [_im360View setOrientation:UIInterfaceOrientationLandscapeRight];
     im360::scene::BasicScene::pointer scene = _player->getScene<im360::scene::BasicScene>();
-    std::string videoURL = [[[NSBundle mainBundle]pathForResource:@"Aquarium.Of.The.Bay_10973_1280x506_f12_2M_a0.webm" ofType:nil]UTF8String];
-    std::string audeoURL = [[[NSBundle mainBundle]pathForResource:@"Aquarium.Of.The.Bay.mp3" ofType:nil]UTF8String];
-    
-    
-    NSLog(@"%s",videoURL.c_str());
-//    std::string videoURL1 = [@"http://101.231.87.94:8888/images/1.mp4" UTF8String];
-//    std::string videoURL = [[[NSBundle mainBundle]pathForResource:@"Bay.Bridge.Flying.Pass.2_11031_1280x506_f12_2M_a0.webm" ofType:nil]UTF8String];
-//    std::string audeoURL = [[[NSBundle mainBundle]pathForResource:@"Bay.Bridge.Flying.Pass.2.mp3" ofType:nil]UTF8String];
+    std::string videoURL = [self.videoURL UTF8String];
+//    std::string audeoURL = [self.audeoURL UTF8String];
+//    NSLog(@"%s",videoURL.c_str());
+    //    std::string videoURL1 = [@"http://101.231.87.94:8888/images/1.mp4" UTF8String];
+    //    std::string videoURL = [[[NSBundle mainBundle]pathForResource:@"Bay.Bridge.Flying.Pass.2_11031_1280x506_f12_2M_a0.webm" ofType:nil]UTF8String];
+    //    std::string audeoURL = [[[NSBundle mainBundle]pathForResource:@"Bay.Bridge.Flying.Pass.2.mp3" ofType:nil]UTF8String];
     scene->resetScene();
-    scene->loadVideo(videoURL,audeoURL);
+
+    scene->loadVideo(videoURL);
+
     scene->setLoopEnabled(FALSE);
     
-    std::string logourl = [[[NSBundle mainBundle]pathForResource:@"icon@2x.png" ofType:nil]UTF8String];
-//    NSLog(@"%s",logourl.c_str());
+    //设置logo图标，需要授权许可
+    /**
+     std::string logourl = [[[NSBundle mainBundle]pathForResource:@"icon@2x.png" ofType:nil]UTF8String];
     scene->setLogoImage(logourl); // requires license
     NSLog(@"%d",scene->setLogoImage(logourl));
-    //不让手机锁屏
+    */
+     //不让手机锁屏
     [[UIApplication sharedApplication] setIdleTimerDisabled:YES];
+    
     [self setupToolbar];
 }
 
@@ -210,7 +210,24 @@ public:
     // Can be used to update a playbar timeline
     //NSLog([NSString stringWithFormat:@"%1.6f", percent]);
     //_progressTrack.value = percent;
-    
-    
+  
+}
+#pragma mark - JCPlayPauseDelegate
+-(void)JCPlayPauseView:(JCPlayPauseView *)toolbar didClickButton:(JCPlayPauseViewButtonType)buttonType
+{
+    switch (buttonType) {
+        case JCPlayPauseViewButtonTypeBackward:
+            NSLog(@"JCPlayPauseViewButtonTypeBackward");
+            break;
+        case JCPlayPauseViewButtonTypePlayPause:
+            [self setPlaybarBtnStates];
+            break;
+        case JCPlayPauseViewButtonTypeForward:
+            NSLog(@"JCPlayPauseViewButtonTypeForward");
+            break;
+            
+        default:
+            break;
+    }
 }
 @end
