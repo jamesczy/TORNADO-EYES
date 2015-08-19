@@ -9,9 +9,12 @@
 #import "JCLocalVideoController.h"
 #import "UIView+Extension.h"
 #import "JCPlayPauseView.h"
+#import "JCMideoModeView.h"
 
 @interface JCLocalVideoController () <JCPlayPauseViewDelegate>
 @property (nonatomic ,weak)JCPlayPauseView *toolbar;
+@property (nonatomic ,weak)UISegmentedControl *segmentView;
+@property (nonatomic ,weak)JCMideoModeView *modeView;
 - (void)playerInitialized:(id)sender;
 @end
 
@@ -45,15 +48,77 @@ public:
     
     [self setnavUp];
     
+    [self setupToolbar];
     
-    
+    [self setupLookMode];
 }
 -(void)setnavUp
 {
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"返回" style:UIBarButtonItemStyleDone target:self action:@selector(cancel)];
-    self.navigationItem.title = @"本地视频";
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"模式" style:UIBarButtonItemStyleDone target:self action:@selector(tabarIsHidden)];
+    UISegmentedControl *segmentView = [[UISegmentedControl alloc]initWithFrame:CGRectMake(0, 0, 100, 40)];
+    [segmentView insertSegmentWithTitle:@"MOTION" atIndex:0 animated:YES];
+    [segmentView insertSegmentWithTitle:@"FINGER" atIndex:1 animated:YES];
+//    segmentView.backgroundColor = [UIColor redColor];
+    segmentView.selectedSegmentIndex = 0;
+    self.navigationItem.titleView = segmentView;
+    self.segmentView = segmentView;
+    [segmentView addTarget:self action:@selector(controlPressed) forControlEvents:UIControlEventValueChanged];
+  
+}
+-(void)controlPressed
+{
+    if( !_player) return;
+    scene::BasicScene::pointer scene = _player->getScene<scene::BasicScene>();
+    if( !scene )
+    {
+        NSLog(@"!scene");
+        return;
+    }
+    int selecteIndex = self.segmentView.selectedSegmentIndex;
+    if (selecteIndex == 0) {
+
+        scene->setLookFlags(im360::scene::BasicScene::LM_FINGER | im360::scene::BasicScene::LM_GRAVITY | im360::scene::BasicScene::LM_MOTION);
+//        NSLog(@"LM_MOTION");
+    }else{
+        scene->setLookFlags(im360::scene::BasicScene::LM_FINGER);
+//        NSLog(@"LM_FINGER");
+    }
+    NSLog(@"LookFlags %d",scene->getLookFlags());
 }
 
+-(void)setupLookMode
+{
+
+    JCMideoModeView *modeView = [[JCMideoModeView alloc]init];
+    modeView.height = 45;
+    modeView.width= self.view.width;
+    modeView.x = 0;
+    modeView.y = self.view.height - modeView.height;
+    [self.view addSubview:modeView];
+    modeView.hidden = YES;
+    self.modeView = modeView;
+    
+}
+-(void)tabarIsHidden
+{
+//    self.toolbar.hidden = !self.toolbar.isHidden;
+    self.modeView.hidden = !self.modeView.isHidden;
+}
+/**
+     enum LookMode
+     {
+     LM_FINGER = 1,          // (mutualy exclusive with LM_HOLD_AND_DRAG)
+     LM_GRAVITY = 2,
+     LM_MOTION = 4,
+     LM_HOLD_AND_DRAG = 8    // (mutualy exclusive with LM_FINGER)
+     };
+     
+     void setLookFlags(int flags);
+     int getLookFlags();
+     void resetMotionData();
+     
+ */
 -(void)setupToolbar
 {
     NSLog(@"setupToolbar");
@@ -78,6 +143,9 @@ public:
         
         _im360View = [[IM360View alloc] initWithFrame:rect];
         //        NSLog(@"%lf ___%lf",rect.size.width,rect.size.height);
+    }else{
+        CGFloat im360ViewY = self.view.size.height * 0.25 ;
+        _im360View = [[IM360View alloc] initWithFrame:CGRectMake(self.view.origin.x, im360ViewY, self.view.size.width, self.view.size.height * 0.5)];
     }
     _im360View.im360ViewDelegate = self;
     
@@ -127,7 +195,7 @@ public:
 
 - (NSUInteger)supportedInterfaceOrientations
 {
-    return UIInterfaceOrientationMaskLandscapeRight;
+    return UIInterfaceOrientationMaskLandscapeLeft;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -139,6 +207,7 @@ public:
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
     //控制导航栏的显示和隐藏
+    /**
     if ([self navigationController].navigationBarHidden) {//显示
         [[self navigationController]setNavigationBarHidden:NO animated:YES];
         self.toolbar.hidden = NO;
@@ -146,8 +215,10 @@ public:
     }else{//隐藏
         [[self navigationController]setNavigationBarHidden:YES animated:YES];
         self.toolbar.hidden = YES;
-    }
-    
+    }  */
+    [self navigationController].navigationBarHidden = ![self navigationController].isNavigationBarHidden;
+    self.toolbar.hidden = [self navigationController].navigationBarHidden;
+    self.modeView.hidden = [self navigationController].navigationBarHidden;
 }
 
 
@@ -155,7 +226,7 @@ public:
 {
     NSLog(@"playerInitialized");
     _player = _im360View.player;
-    [_im360View setOrientation:UIInterfaceOrientationLandscapeRight];
+    [_im360View setOrientation:UIInterfaceOrientationLandscapeLeft];
     im360::scene::BasicScene::pointer scene = _player->getScene<im360::scene::BasicScene>();
     std::string videoURL = [self.videoURL UTF8String];
 //    std::string audeoURL = [self.audeoURL UTF8String];
@@ -179,6 +250,7 @@ public:
     [[UIApplication sharedApplication] setIdleTimerDisabled:YES];
     
     [self setupToolbar];
+    [self setupLookMode];
 }
 
 
@@ -220,6 +292,7 @@ public:
             NSLog(@"JCPlayPauseViewButtonTypeBackward");
             break;
         case JCPlayPauseViewButtonTypePlayPause:
+            NSLog(@"JCPlayPauseViewButtonTypePlayPause");
             [self setPlaybarBtnStates];
             break;
         case JCPlayPauseViewButtonTypeForward:

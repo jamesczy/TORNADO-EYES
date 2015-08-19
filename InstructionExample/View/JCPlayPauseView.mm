@@ -33,6 +33,8 @@
         [self setupBtn:@"movieBackward@2x.png" hightImage:@"movieBackwardSelected@2x.png" type:JCPlayPauseViewButtonTypeBackward];
         [self setupBtn:@"moviePause@2x.png" hightImage:@"moviePlay@2x.png" type:JCPlayPauseViewButtonTypePlayPause];
         [self setupBtn:@"movieForward@2x.png" hightImage:@"movieForwardSelected@2x.png" type:JCPlayPauseViewButtonTypeForward];
+        UISlider *progressBarView = [[UISlider alloc] init];
+        [self addSubview:progressBarView];
     }
     return self;
 }
@@ -60,15 +62,24 @@
     [super layoutSubviews];
     //设置所有按钮的frame
     NSUInteger count = self.subviews.count;
-    CGFloat btnW = self.width / count;
+    CGFloat btnW = self.width * 0.5 / count;
     CGFloat btnH = self.height;
     
     for (NSUInteger i = 0; i < count; i++) {
-        UIButton *btn = self.subviews[i];
-        btn.y = 0;
-        btn.x = i * btnW;
-        btn.width = btnW;
-        btn.height = btnH;
+        if (i != count - 1) {
+            UIButton *btn = self.subviews[i];
+            btn.y = 0;
+            btn.x = i * btnW;
+            btn.width = btnW;
+            btn.height = btnH;
+        }else{
+            UISlider *progressBarView = self.subviews[i];
+            progressBarView.x = self.width * 0.5 + 10;
+            progressBarView.y = (self.height - progressBarView.height) * 0.5;
+            progressBarView.width = self.width * 0.5 - 20;
+//            progressBarView.height = self.height * 0.5 ;
+        }
+        
     }
 }
 

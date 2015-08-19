@@ -26,14 +26,7 @@ static NSString * const reuseIdentifier = @"Cell";
 
 @implementation JCOnlineViewController
 
-//-(NSMutableArray *)titleArray
-//{
-//    if (_titleArray == nil) {
-//        NSMutableArray *array = [[NSMutableArray alloc]init ];
-//        self.titleArray = array;
-//    }
-//    return _titleArray;
-//}
+
 -(instancetype)init
 {
     UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc]init];

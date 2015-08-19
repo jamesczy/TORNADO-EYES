@@ -47,23 +47,6 @@ static NSString * const reuseIdentifier = @"Cell";
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-//读取本地文件
-- (IBAction)logFilePathInDocumentsDir:(id)sender
-{
-    NSString *docsDir = [NSHomeDirectory() stringByAppendingPathComponent:  @"Documents"];
-    
-    NSFileManager *fileManager = [NSFileManager defaultManager];
-    
-    NSDirectoryEnumerator *dirEnum = [fileManager enumeratorAtPath:docsDir];
-    
-    NSString *fileName;
-    
-    while (fileName = [dirEnum nextObject]) {
-        NSLog(@"FielName : %@" , fileName);
-        NSLog(@"FileFullPath : %@" , [docsDir stringByAppendingPathComponent:fileName]) ;
-    }
-    
-}
 
 #pragma mark <UICollectionViewDataSource>
 

@@ -49,6 +49,7 @@ public:
     
     [self setnavUp];
 
+    [self setupToolbar];
 }
 
 -(void)setnavUp
@@ -130,7 +131,7 @@ public:
 
 - (NSUInteger)supportedInterfaceOrientations
 {
-    return UIInterfaceOrientationMaskLandscapeRight;
+    return UIInterfaceOrientationMaskLandscapeLeft;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -158,13 +159,13 @@ public:
 {
     NSLog(@"playerInitialized");
     _player = _im360View.player;
-    [_im360View setOrientation:UIInterfaceOrientationLandscapeRight];
+    [_im360View setOrientation:UIInterfaceOrientationLandscapeLeft];
     im360::scene::BasicScene::pointer scene = _player->getScene<im360::scene::BasicScene>();
     std::string videoURL = [[[NSBundle mainBundle]pathForResource:@"Aquarium.Of.The.Bay_10973_1280x506_f12_2M_a0.webm" ofType:nil]UTF8String];
     std::string audeoURL = [[[NSBundle mainBundle]pathForResource:@"Aquarium.Of.The.Bay.mp3" ofType:nil]UTF8String];
     
     
-    NSLog(@"%s",videoURL.c_str());
+//    NSLog(@"%s",videoURL.c_str());
 //    std::string videoURL1 = [@"http://101.231.87.94:8888/images/1.mp4" UTF8String];
 //    std::string videoURL = [[[NSBundle mainBundle]pathForResource:@"Bay.Bridge.Flying.Pass.2_11031_1280x506_f12_2M_a0.webm" ofType:nil]UTF8String];
 //    std::string audeoURL = [[[NSBundle mainBundle]pathForResource:@"Bay.Bridge.Flying.Pass.2.mp3" ofType:nil]UTF8String];
@@ -210,7 +211,6 @@ public:
     // Can be used to update a playbar timeline
     //NSLog([NSString stringWithFormat:@"%1.6f", percent]);
     //_progressTrack.value = percent;
-    
-    
+   
 }
 @end

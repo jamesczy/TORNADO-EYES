@@ -119,6 +119,7 @@
 		BFB4AEAD1B82C71600ECECB2 /* JCLocalVideoController.mm in Sources */ = {isa = PBXBuildFile; fileRef = BFB4AEAC1B82C71600ECECB2 /* JCLocalVideoController.mm */; };
 		BFB4AEB11B83055600ECECB2 /* compose_toolbar_background@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BFB4AEAF1B83055600ECECB2 /* compose_toolbar_background@2x.png */; };
 		BFB4AEB21B83055600ECECB2 /* Contents.json in Resources */ = {isa = PBXBuildFile; fileRef = BFB4AEB01B83055600ECECB2 /* Contents.json */; };
+		BFB4AEB51B846DE700ECECB2 /* JCMideoModeView.m in Sources */ = {isa = PBXBuildFile; fileRef = BFB4AEB41B846DE700ECECB2 /* JCMideoModeView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -259,6 +260,8 @@
 		BFB4AEAC1B82C71600ECECB2 /* JCLocalVideoController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = JCLocalVideoController.mm; sourceTree = "<group>"; };
 		BFB4AEAF1B83055600ECECB2 /* compose_toolbar_background@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "compose_toolbar_background@2x.png"; sourceTree = "<group>"; };
 		BFB4AEB01B83055600ECECB2 /* Contents.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Contents.json; sourceTree = "<group>"; };
+		BFB4AEB31B846DE700ECECB2 /* JCMideoModeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JCMideoModeView.h; sourceTree = "<group>"; };
+		BFB4AEB41B846DE700ECECB2 /* JCMideoModeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JCMideoModeView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -708,6 +711,8 @@
 			children = (
 				BF93A6811B79C5E2009B067A /* JCPlayPauseView.h */,
 				BF93A6821B79C5E2009B067A /* JCPlayPauseView.mm */,
+				BFB4AEB31B846DE700ECECB2 /* JCMideoModeView.h */,
+				BFB4AEB41B846DE700ECECB2 /* JCMideoModeView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -895,6 +900,7 @@
 				91E6E7F517CD2D78008B3D2E /* main.m in Sources */,
 				982DC72C1B65F972002F3DAE /* JCViewCell.mm in Sources */,
 				987412461B61E5AB00DB0271 /* JCTabBarViewController.mm in Sources */,
+				BFB4AEB51B846DE700ECECB2 /* JCMideoModeView.m in Sources */,
 				91E6E7F917CD2D78008B3D2E /* AppDelegate.mm in Sources */,
 				987FBF691B67682700A1D80D /* JC360Controller.mm in Sources */,
 				BF93A6831B79C5E2009B067A /* JCPlayPauseView.mm in Sources */,
