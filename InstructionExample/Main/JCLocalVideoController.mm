@@ -11,9 +11,12 @@
 #import "JCPlayPauseView.h"
 #import "JCMideoModeView.h"
 
-@interface JCLocalVideoController () <JCPlayPauseViewDelegate>
+@interface JCLocalVideoController () <JCPlayPauseViewDelegate,JCMideoModeViewDelegate>
+/** 播放暂停栏 */
 @property (nonatomic ,weak)JCPlayPauseView *toolbar;
+/** 观看模式栏，导航栏上 */
 @property (nonatomic ,weak)UISegmentedControl *segmentView;
+/** 播放模式栏 */
 @property (nonatomic ,weak)JCMideoModeView *modeView;
 - (void)playerInitialized:(id)sender;
 @end
@@ -89,12 +92,12 @@ public:
 
 -(void)setupLookMode
 {
-
     JCMideoModeView *modeView = [[JCMideoModeView alloc]init];
     modeView.height = 45;
     modeView.width= self.view.width;
     modeView.x = 0;
     modeView.y = self.view.height - modeView.height;
+    modeView.delegate = self;
     [self.view addSubview:modeView];
     modeView.hidden = YES;
     self.modeView = modeView;
@@ -104,6 +107,7 @@ public:
 {
 //    self.toolbar.hidden = !self.toolbar.isHidden;
     self.modeView.hidden = !self.modeView.isHidden;
+    
 }
 /**
      enum LookMode
@@ -121,12 +125,12 @@ public:
  */
 -(void)setupToolbar
 {
-    NSLog(@"setupToolbar");
     JCPlayPauseView *toolbar = [[JCPlayPauseView alloc]init ];
     toolbar.width = self.view.width;
     toolbar.height = 44;
     toolbar.y = self.view.height - toolbar.height;
     toolbar.x = 0;
+    toolbar.delegate = self;
     [self.view addSubview:toolbar];
     self.toolbar = toolbar;
 }
@@ -142,7 +146,7 @@ public:
     {
         
         _im360View = [[IM360View alloc] initWithFrame:rect];
-        //        NSLog(@"%lf ___%lf",rect.size.width,rect.size.height);
+
     }else{
         CGFloat im360ViewY = self.view.size.height * 0.25 ;
         _im360View = [[IM360View alloc] initWithFrame:CGRectMake(self.view.origin.x, im360ViewY, self.view.size.width, self.view.size.height * 0.5)];
@@ -162,21 +166,21 @@ public:
     scene::BasicScene::pointer scene = _player->getScene<scene::BasicScene>();
     if( !scene )
     {
-        //        _rewindBtn.enabled = NO;
-        //        _playBtn.enabled = NO;
         return;
     }
     //    _rewindBtn.enabled = scene->getTime()>0;
     if( scene->getPaused() /*&& _playbar.items!=_playbarItemsPlay */)
     {
-        //        NSLog(@"setItems play,%d",scene->getPaused());
+
         scene->setPaused(NO);
+        [self.toolbar.playPauseBtn setImage:[UIImage imageNamed:@"moviePause@2x.png"] forState:UIControlStateNormal];
         //        [_playbar setItems:_playbarItemsPlay animated:NO];
     }
     else if( !scene->getPaused() /* && _playbar.items!=_playbarItemsPause */)
     {
-        //        NSLog(@"setItems pause");
+        
         scene->setPaused(YES);
+        [self.toolbar.playPauseBtn setImage:[UIImage imageNamed:@"moviePlay@2x.png"] forState:UIControlStateNormal];
         //        [_playbar setItems:_playbarItemsPause animated:NO];
     }
     
@@ -184,7 +188,6 @@ public:
 
 -(void)viewDidDisappear:(BOOL)animated
 {
-    NSLog(@"viewDidDisappear");
     [_im360View stopAnimation];
 }
 
@@ -207,18 +210,10 @@ public:
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
     //控制导航栏的显示和隐藏
-    /**
-    if ([self navigationController].navigationBarHidden) {//显示
-        [[self navigationController]setNavigationBarHidden:NO animated:YES];
-        self.toolbar.hidden = NO;
-//        [self setPlaybarBtnStates];
-    }else{//隐藏
-        [[self navigationController]setNavigationBarHidden:YES animated:YES];
-        self.toolbar.hidden = YES;
-    }  */
+
     [self navigationController].navigationBarHidden = ![self navigationController].isNavigationBarHidden;
     self.toolbar.hidden = [self navigationController].navigationBarHidden;
-    self.modeView.hidden = [self navigationController].navigationBarHidden;
+    self.modeView.hidden = YES;
 }
 
 
@@ -228,15 +223,24 @@ public:
     _player = _im360View.player;
     [_im360View setOrientation:UIInterfaceOrientationLandscapeLeft];
     im360::scene::BasicScene::pointer scene = _player->getScene<im360::scene::BasicScene>();
-    std::string videoURL = [self.videoURL UTF8String];
+    
+    scene->resetScene();
+    
+    
+    if ([self.videoURL isEqual: @""]) {
+        std::string videoURL = [[[NSBundle mainBundle]pathForResource:@"Bay.Bridge.Flying.Pass.2_11031_1280x506_f12_2M_a0.webm" ofType:nil]UTF8String];
+        std::string audeoURL = [[[NSBundle mainBundle]pathForResource:@"Bay.Bridge.Flying.Pass.2.mp3" ofType:nil]UTF8String];
+        scene->loadVideo(videoURL,audeoURL);
+    }else{
+        std::string videoURL = [self.videoURL UTF8String];
+        scene->loadVideo(videoURL);
+    }
 //    std::string audeoURL = [self.audeoURL UTF8String];
 //    NSLog(@"%s",videoURL.c_str());
     //    std::string videoURL1 = [@"http://101.231.87.94:8888/images/1.mp4" UTF8String];
     //    std::string videoURL = [[[NSBundle mainBundle]pathForResource:@"Bay.Bridge.Flying.Pass.2_11031_1280x506_f12_2M_a0.webm" ofType:nil]UTF8String];
     //    std::string audeoURL = [[[NSBundle mainBundle]pathForResource:@"Bay.Bridge.Flying.Pass.2.mp3" ofType:nil]UTF8String];
-    scene->resetScene();
 
-    scene->loadVideo(videoURL);
 
     scene->setLoopEnabled(FALSE);
     
@@ -278,21 +282,22 @@ public:
     
     // Percent of video played
     
-    //float percent =  event->time / scene->getDuration() ;
+    float percent =  event->time / scene->getDuration() ;
     // Can be used to update a playbar timeline
-    //NSLog([NSString stringWithFormat:@"%1.6f", percent]);
-    //_progressTrack.value = percent;
+    NSLog([NSString stringWithFormat:@"%1.6f", percent]);
+    self.toolbar.progressBarView.value = percent;
   
 }
 #pragma mark - JCPlayPauseDelegate
 -(void)JCPlayPauseView:(JCPlayPauseView *)toolbar didClickButton:(JCPlayPauseViewButtonType)buttonType
 {
+    
     switch (buttonType) {
         case JCPlayPauseViewButtonTypeBackward:
             NSLog(@"JCPlayPauseViewButtonTypeBackward");
+            
             break;
         case JCPlayPauseViewButtonTypePlayPause:
-            NSLog(@"JCPlayPauseViewButtonTypePlayPause");
             [self setPlaybarBtnStates];
             break;
         case JCPlayPauseViewButtonTypeForward:
@@ -303,4 +308,40 @@ public:
             break;
     }
 }
+#pragma mark - JJCMideoModeViewDelegate
+-(void)JCMideoModeView:(JCMideoModeView *)toolbar didClickButton:(JCMideoModeType)buttonType
+{
+    _player = _im360View.player;
+    switch (buttonType) {
+        case JCMideoModeTypeStandard:
+            NSLog(@"JCMideoModeTypeStandard");
+            _player->setViewMode(im360::player::PlayerViewMode::STANDARD);
+            break;
+        case JCMideoModeTypeIs3DSide:
+            NSLog(@"JCMideoModeTypeIs3DSide");
+            _player->setViewMode(im360::player::PlayerViewMode::SIDE_BY_SIDE_3D);
+            break;
+        case JCMideoModeTypeCancel:
+            NSLog(@"JCMideoModeTypeCancel");
+            self.modeView.hidden = YES;
+            break;
+            
+        default:
+            break;
+    }
+}
+/**
+     enum Mode
+     {
+     STANDARD=0,
+     SIDE_BY_SIDE_3D,
+     TOP_BOTTOM_3D,
+     ANAGLYPH_3D,
+     
+     COUNT
+     };
+ 
+     void setViewMode(PlayerViewMode::Mode mode);
+     PlayerViewMode::Mode getViewMode() const;
+ */
 @end

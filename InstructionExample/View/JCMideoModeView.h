@@ -13,7 +13,12 @@ typedef enum {
     JCMideoModeTypeIs3DSide,//是否3
     JCMideoModeTypeCancel   //取消
 }JCMideoModeType;
+@class JCMideoModeView;
+@protocol JCMideoModeViewDelegate <NSObject>
+@optional
+-(void)JCMideoModeView:(JCMideoModeView *)toolbar didClickButton:(JCMideoModeType)buttonType;
+@end
 
 @interface JCMideoModeView : UIView
-
+@property (nonatomic ,weak) id<JCMideoModeViewDelegate> delegate;
 @end

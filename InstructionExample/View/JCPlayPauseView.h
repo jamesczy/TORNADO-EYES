@@ -19,6 +19,15 @@ typedef enum {
 -(void)JCPlayPauseView:(JCPlayPauseView *)toolbar didClickButton:(JCPlayPauseViewButtonType)buttonType;
 @end
 @interface JCPlayPauseView : UIView
-
+/** 暂停播放界面 */
+@property (nonatomic ,weak)UIView *buttomView;
+/** 播放暂停按钮 */
+@property (nonatomic ,weak)UIButton *playPauseBtn;
+/** 回退按钮 */
+@property (nonatomic ,weak)UIButton *moveBackBtn;
+/** 快进按钮 */
+@property (nonatomic ,weak)UIButton *moveForwordBtn;
+/** 进度条 */
+@property (nonatomic ,weak)UISlider *progressBarView;
 @property (nonatomic ,weak)id <JCPlayPauseViewDelegate> delegate;
 @end

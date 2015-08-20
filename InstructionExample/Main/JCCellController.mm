@@ -11,6 +11,7 @@
 #import "ViewController.h"
 #import "JC360Controller.h"
 #import "JCNavigationController.h"
+#import "JCLocalVideoController.h"
 
 @interface JCCellController ()
 
@@ -85,41 +86,21 @@ static NSString * const reuseIdentifier = @"Cell";
 
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
+    /**
     NSLog(@"这是第 %d 行被点击了。",indexPath.row);
     JC360Controller *vc = [[JC360Controller alloc]init];
 //    ViewController *vc = [[ViewController alloc]init];
     JCNavigationController *nav = [[JCNavigationController alloc]initWithRootViewController:vc];
     [self presentViewController:nav animated:YES completion:nil];
 //    [self.navigationController pushViewController:vc animated:TRUE];
+    */
+    NSLog(@"这是第 %d 行被点击了。",indexPath.row);
+    JCLocalVideoController *vc = [[JCLocalVideoController alloc]init];
+    vc.videoURL = @"";
+    
+    JCNavigationController *nav = [[JCNavigationController alloc]initWithRootViewController:vc];
+    [self presentViewController:nav animated:YES completion:nil];
 }
 
-/*
-// Uncomment this method to specify if the specified item should be highlighted during tracking
-- (BOOL)collectionView:(UICollectionView *)collectionView shouldHighlightItemAtIndexPath:(NSIndexPath *)indexPath {
-	return YES;
-}
-*/
-
-/*
-// Uncomment this method to specify if the specified item should be selected
-- (BOOL)collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    return YES;
-}
-*/
-
-/*
-// Uncomment these methods to specify if an action menu should be displayed for the specified item, and react to actions performed on the item
-- (BOOL)collectionView:(UICollectionView *)collectionView shouldShowMenuForItemAtIndexPath:(NSIndexPath *)indexPath {
-	return NO;
-}
-
-- (BOOL)collectionView:(UICollectionView *)collectionView canPerformAction:(SEL)action forItemAtIndexPath:(NSIndexPath *)indexPath withSender:(id)sender {
-	return NO;
-}
-
-- (void)collectionView:(UICollectionView *)collectionView performAction:(SEL)action forItemAtIndexPath:(NSIndexPath *)indexPath withSender:(id)sender {
-	
-}
-*/
 
 @end

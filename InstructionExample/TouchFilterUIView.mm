@@ -43,6 +43,7 @@
     return [_im360View hitTest:point withEvent:event];
     
 }
+
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
      UITouch *touch = [touches anyObject];
@@ -52,13 +53,6 @@
         [_im360View touchesBegan:touches withEvent:event];
     }
 }
-/*
- // Only override drawRect: if you perform custom drawing.
- // An empty implementation adversely affects performance during animation.
- - (void)drawRect:(CGRect)rect
- {
- // Drawing code
- }
- */
+
 
 @end

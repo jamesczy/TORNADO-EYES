@@ -16,9 +16,10 @@
     self = [super initWithFrame:frame];
     if (self) {
         self.backgroundColor = [UIColor clearColor];
-        [self setupBtn:@"Standard" type:JCMideoModeTypeStandard];
+        [self setupBtn:@"标准" type:JCMideoModeTypeStandard];
         [self setupBtn:@"3DSide/Side" type:JCMideoModeTypeIs3DSide];
-        [self setupBtn:@"Cancel" type:JCMideoModeTypeCancel];
+        [self setupBtn:@"取消" type:JCMideoModeTypeCancel];
+        
     }
     
     return self;
@@ -31,11 +32,16 @@
     [btn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [btn setTitleColor:[UIColor blueColor] forState:UIControlStateHighlighted];
     [btn setBackgroundImage:[UIImage imageNamed:@"tabbar_background@2x.png"] forState:UIControlStateNormal];
-//    [btn addTarget:self action:@selector(btnClick:) forControlEvents:UIControlEventTouchUpInside];
+    [btn addTarget:self action:@selector(btnClick:) forControlEvents:UIControlEventTouchUpInside];
     btn.tag = type;
     [self addSubview:btn];
 }
-
+-(void)btnClick:(UIButton *)btn
+{
+    if ([self.delegate respondsToSelector:@selector(JCMideoModeView: didClickButton:)]) {
+        [self.delegate JCMideoModeView:self didClickButton:(JCMideoModeType)btn.tag];
+    }
+}
 -(void)layoutSubviews
 {
     [super layoutSubviews];
