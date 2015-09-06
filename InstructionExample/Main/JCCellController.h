@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface JCCellController : UICollectionViewController
-
+@property (nonatomic ,strong)NSArray *playList;
 @end

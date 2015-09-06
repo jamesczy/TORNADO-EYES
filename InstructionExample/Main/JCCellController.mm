@@ -13,7 +13,11 @@
 #import "JCNavigationController.h"
 #import "JCLocalVideoController.h"
 
+#import "JCSaveArchiverTool.h"
+#import "JCPlayPathInfo.h"
+
 @interface JCCellController ()
+@property (nonatomic ,assign)NSUInteger count;
 
 @end
 
@@ -32,7 +36,12 @@ static NSString * const reuseIdentifier = @"Cell";
     layout.sectionInset = UIEdgeInsetsMake(0, 5, 0, 5);
     return [super initWithCollectionViewLayout:layout];
 }
-
+-(void)setPlayList:(NSArray *)playList
+{
+    _playList = playList;
+    self.count = playList.count;
+    
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -42,6 +51,7 @@ static NSString * const reuseIdentifier = @"Cell";
     // Register cell classes
     [self.collectionView registerClass:[JCCollectionCell class] forCellWithReuseIdentifier:reuseIdentifier];
     // Do any additional setup after loading the view.
+    self.playList = [JCSaveArchiverTool playPathInfo];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -59,7 +69,7 @@ static NSString * const reuseIdentifier = @"Cell";
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
 
-    return 2;
+    return self.count + 2;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
@@ -68,6 +78,7 @@ static NSString * const reuseIdentifier = @"Cell";
     if (cell == nil) {
         cell = [[JCCollectionCell alloc]init];
     }
+    
     [cell setCellTitle:@"标题" Name:@"介绍"];
     return cell;
 }

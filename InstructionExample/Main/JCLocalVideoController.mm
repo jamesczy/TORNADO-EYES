@@ -221,7 +221,7 @@ public:
 
 - (void)playerInitialized:(id)sender
 {
-    NSLog(@"playerInitialized");
+//    NSLog(@"playerInitialized");
     _player = _im360View.player;
     [_im360View setOrientation:UIInterfaceOrientationLandscapeLeft];
     im360::scene::BasicScene::pointer scene = _player->getScene<im360::scene::BasicScene>();

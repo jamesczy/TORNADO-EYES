@@ -15,6 +15,9 @@
 #import "JCNavigationController.h"
 #import "JCLocalVideoController.h"
 
+#import "JCSaveArchiverTool.h"
+#import "JCPlayPathInfo.h"
+
 @interface JCOnlineViewController ()
 @property (nonatomic ,strong)NSMutableArray *titleArray;
 @property (nonatomic ,strong)NSMutableArray *titlePathArray;
@@ -153,9 +156,17 @@ static NSString * const reuseIdentifier = @"Cell";
 
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSLog(@"这是第 %d 行被点击了。",indexPath.row);
+//    NSLog(@"这是第 %d 行被点击了。",indexPath.row);
     JCLocalVideoController *vc = [[JCLocalVideoController alloc]init];
     vc.videoURL = self.titlePathArray[indexPath.row];
+    
+    JCPlayPathInfo * info = [[JCPlayPathInfo alloc]init];
+    info.videoURL = vc.videoURL;
+    info.videoName = self.titleArray[indexPath.row];
+    
+//    NSLog(@"%@--%@",info.videoName,info.videoURL);
+    
+    [JCSaveArchiverTool addPlayPath:info];
     
     JCNavigationController *nav = [[JCNavigationController alloc]initWithRootViewController:vc];
     [self presentViewController:nav animated:YES completion:nil];
