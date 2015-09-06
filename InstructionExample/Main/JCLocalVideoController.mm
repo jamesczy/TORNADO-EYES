@@ -142,6 +142,7 @@ public:
 -(void)viewDidAppear:(BOOL)animated
 {
     CGRect rect = self.view.frame;
+    
     if( self.interfaceOrientation == UIInterfaceOrientationLandscapeLeft || self.interfaceOrientation == UIInterfaceOrientationLandscapeRight )
     {
         
@@ -158,6 +159,7 @@ public:
     [_im360View startAnimation];
     
 }
+
 //设置暂停和播放
 - (void)setPlaybarBtnStates
 {
